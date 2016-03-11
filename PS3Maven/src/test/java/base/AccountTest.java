@@ -9,7 +9,7 @@ public class AccountTest {
 	
 
 	@Test
-	public void test() {
+	public void TestDepositWithdraw() {
 		int id=1122;
 	    double balance = 20000;
 	    double annualInterestRate=4.5;
@@ -27,5 +27,17 @@ public class AccountTest {
 	    assertTrue(a.getBalance() == 20500);
 	    
 	}
+	
+	@Test(expected=InsufficientFundsException.class)
+	public void TestOverDraw() throws InsufficientFundsException {
+		int id=1122;
+	    double balance = 500;
+	    double annualInterestRate=4.5;
+	    
+	    Account a = new Account(id, balance, annualInterestRate);   
+	    a.withdraw(600);
+	    
+	}
+	
 }
 
